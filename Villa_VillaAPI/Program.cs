@@ -1,6 +1,14 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using Microsoft.EntityFrameworkCore;
+using Villa_VillaAPI.Data;
+
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+// EFCore DBContext
+builder.Services.AddDbContext<ApplicationDBContext>(options => {
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultSQLConnection"));
+});
 
 builder.Services.AddControllers(options => {
     // options.ReturnHttpNotAcceptable = true;
