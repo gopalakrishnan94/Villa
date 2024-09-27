@@ -1,4 +1,5 @@
 using System;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Villa_VillaAPI.Data;
 using Villa_VillaAPI.Models.DTO;
@@ -82,6 +83,23 @@ public class VillaAPIController : ControllerBase
         villa.Occupancy = villaDTO.Occupancy;
         villa.Sqft = villaDTO.Sqft;
 
+        return NoContent();
+    }
+
+    [HttpPatch("{id:int}", Name = "UpdatePartialVilla")]
+    public ActionResult<VillaDTO> UpdatePartialVilla(int id, JsonPatchDocument<VillaDTO> patchDTO) 
+    {
+        if (patchDTO == null || id == 0) {
+            return BadRequest();
+        }
+        var villa = VillaStore.villaList.FirstOrDefault(u => u.Id == id);
+        if (villa == null) {
+            return NotFound();
+        }
+        patchDTO.ApplyTo(villa, ModelState);
+        if(!ModelState.IsValid) {
+            return BadRequest(ModelState);
+        }
         return NoContent();
     }
 }
