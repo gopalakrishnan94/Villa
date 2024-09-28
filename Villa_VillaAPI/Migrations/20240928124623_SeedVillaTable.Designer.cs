@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Villa_VillaAPI.Data;
 
@@ -11,9 +12,11 @@ using Villa_VillaAPI.Data;
 namespace Villa_VillaAPI.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240928124623_SeedVillaTable")]
+    partial class SeedVillaTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,10 +73,10 @@ namespace Villa_VillaAPI.Migrations
                         {
                             Id = 1,
                             Amenity = "",
-                            CreatedDate = new DateTime(2024, 9, 28, 18, 18, 13, 922, DateTimeKind.Local).AddTicks(9240),
+                            CreatedDate = new DateTime(2024, 9, 28, 18, 16, 23, 360, DateTimeKind.Local).AddTicks(9010),
                             Details = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
                             ImageUrl = "",
-                            Name = "Villa_01",
+                            Name = "Villa 01",
                             Occupancy = 2,
                             Rate = 2000.0,
                             Sqft = 600,
@@ -83,10 +86,10 @@ namespace Villa_VillaAPI.Migrations
                         {
                             Id = 2,
                             Amenity = "",
-                            CreatedDate = new DateTime(2024, 9, 28, 18, 18, 13, 922, DateTimeKind.Local).AddTicks(9320),
+                            CreatedDate = new DateTime(2024, 9, 28, 18, 16, 23, 360, DateTimeKind.Local).AddTicks(9030),
                             Details = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
                             ImageUrl = "",
-                            Name = "Villa_02",
+                            Name = "Villa 02",
                             Occupancy = 3,
                             Rate = 3000.0,
                             Sqft = 800,
@@ -96,10 +99,10 @@ namespace Villa_VillaAPI.Migrations
                         {
                             Id = 3,
                             Amenity = "",
-                            CreatedDate = new DateTime(2024, 9, 28, 18, 18, 13, 922, DateTimeKind.Local).AddTicks(9320),
+                            CreatedDate = new DateTime(2024, 9, 28, 18, 16, 23, 360, DateTimeKind.Local).AddTicks(9030),
                             Details = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
                             ImageUrl = "",
-                            Name = "Villa_03",
+                            Name = "Villa 03",
                             Occupancy = 4,
                             Rate = 4000.0,
                             Sqft = 1000,
@@ -109,10 +112,10 @@ namespace Villa_VillaAPI.Migrations
                         {
                             Id = 4,
                             Amenity = "",
-                            CreatedDate = new DateTime(2024, 9, 28, 18, 18, 13, 922, DateTimeKind.Local).AddTicks(9320),
+                            CreatedDate = new DateTime(2024, 9, 28, 18, 16, 23, 360, DateTimeKind.Local).AddTicks(9040),
                             Details = "Fusce 11 tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
                             ImageUrl = "",
-                            Name = "Villa_04",
+                            Name = "Villa 04",
                             Occupancy = 5,
                             Rate = 5000.0,
                             Sqft = 1200,
@@ -122,10 +125,10 @@ namespace Villa_VillaAPI.Migrations
                         {
                             Id = 5,
                             Amenity = "",
-                            CreatedDate = new DateTime(2024, 9, 28, 18, 18, 13, 922, DateTimeKind.Local).AddTicks(9330),
+                            CreatedDate = new DateTime(2024, 9, 28, 18, 16, 23, 360, DateTimeKind.Local).AddTicks(9040),
                             Details = "Fusce 11 tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
                             ImageUrl = "",
-                            Name = "Villa_05",
+                            Name = "Villa 05",
                             Occupancy = 10,
                             Rate = 10000.0,
                             Sqft = 2000,
