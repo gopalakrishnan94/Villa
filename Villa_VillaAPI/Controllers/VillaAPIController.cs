@@ -19,18 +19,18 @@ public class VillaAPIController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<VillaDTO>> GetVillas() 
+    public async Task<ActionResult<IEnumerable<VillaDTO>>> GetVillas() 
     {
-        return Ok(_dbContext.Villas.ToList());
+        return Ok(await _dbContext.Villas.ToListAsync());
     }
 
     [HttpGet("{id:int}", Name = "GetVilla")]
-    public ActionResult<VillaDTO> GetVilla(int id) 
+    public async Task<ActionResult<VillaDTO>> GetVilla(int id) 
     {
         if (id == 0) {
             return BadRequest();
         }
-        var villa = _dbContext.Villas.FirstOrDefault(u => u.Id == id);
+        var villa = await _dbContext.Villas.FirstOrDefaultAsync(u => u.Id == id);
         if (villa == null) {
             return NotFound();
         }
@@ -38,7 +38,7 @@ public class VillaAPIController : ControllerBase
     }
     
     [HttpPost]
-    public ActionResult<VillaDTO> CreateVilla([FromBody]CreateVillaDTO createDTO) 
+    public async Task<ActionResult<VillaDTO>> CreateVilla([FromBody]CreateVillaDTO createDTO) 
     {
         // if (!ModelState.IsValid) {
         //     return BadRequest(ModelState);
@@ -46,7 +46,7 @@ public class VillaAPIController : ControllerBase
         
         // Custom Validation Error
 
-        if (_dbContext.Villas.FirstOrDefault(u => u.Name.ToLower() == createDTO.Name.ToLower()) != null) 
+        if (await _dbContext.Villas.FirstOrDefaultAsync(u => u.Name.ToLower() == createDTO.Name.ToLower()) != null) 
         {
             ModelState.AddModelError("CustomError", "Villa Already Exist!");
             return BadRequest(ModelState);
@@ -66,34 +66,34 @@ public class VillaAPIController : ControllerBase
             ImageUrl = createDTO.ImageUrl
         };
 
-        _dbContext.Villas.Add(villaModel);
-        _dbContext.SaveChanges();
+        await _dbContext.Villas.AddAsync(villaModel);
+        await _dbContext.SaveChangesAsync();
 
         return CreatedAtRoute("GetVilla", new { id = villaModel.Id }, villaModel);
     }
 
     [HttpDelete("{id:int}", Name = "DeleteVilla")]
-    public ActionResult<VillaDTO> DeleteVilla(int id) 
+    public async Task<ActionResult<VillaDTO>> DeleteVilla(int id) 
     {
         if (id == 0) {
             return BadRequest();
         }
-        var villa = _dbContext.Villas.FirstOrDefault(u => u.Id == id);
+        var villa = await _dbContext.Villas.FirstOrDefaultAsync(u => u.Id == id);
         if (villa == null) {
             return NotFound();
         }
         _dbContext.Villas.Remove(villa);
-        _dbContext.SaveChanges();
+        await _dbContext.SaveChangesAsync();
         return NoContent();
     }
 
     [HttpPut("{id:int}", Name = "UpdateVilla")]
-    public ActionResult<VillaDTO> UpdateVilla(int id, [FromBody]UpdateVillaDTO updateDTO) 
+    public async Task<ActionResult<VillaDTO>> UpdateVilla(int id, [FromBody]UpdateVillaDTO updateDTO) 
     {
         if (updateDTO == null || id != updateDTO.Id) {
             return BadRequest();
         }
-        var villa = _dbContext.Villas.AsNoTracking().FirstOrDefault(u => u.Id == id);
+        var villa = await _dbContext.Villas.AsNoTracking().FirstOrDefaultAsync(u => u.Id == id);
         if (villa == null) {
             return NotFound();
         }
@@ -110,18 +110,18 @@ public class VillaAPIController : ControllerBase
         };
 
         _dbContext.Villas.Update(villaModel);
-        _dbContext.SaveChanges();
+        await _dbContext.SaveChangesAsync();
         return NoContent();
     }
 
     [HttpPatch("{id:int}", Name = "UpdatePartialVilla")]
-    public ActionResult<VillaDTO> UpdatePartialVilla(int id, JsonPatchDocument<UpdateVillaDTO> patchDTO) 
+    public async Task<ActionResult<VillaDTO>> UpdatePartialVilla(int id, JsonPatchDocument<UpdateVillaDTO> patchDTO) 
     {
         if (patchDTO == null || id == 0)
         {
             return BadRequest();
         }
-        var villa = _dbContext.Villas.AsNoTracking().FirstOrDefault(u => u.Id == id);
+        var villa = await _dbContext.Villas.AsNoTracking().FirstOrDefaultAsync(u => u.Id == id);
         if (villa == null)
         {
             return NotFound();
@@ -158,7 +158,7 @@ public class VillaAPIController : ControllerBase
         };
 
         _dbContext.Villas.Update(villaModel);
-        _dbContext.SaveChanges();
+        await _dbContext.SaveChangesAsync();
 
         return NoContent();
     }
