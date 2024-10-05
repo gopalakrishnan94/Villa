@@ -1,0 +1,30 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "C#: <Villa_VillaAPI>",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "/Users/gopalsmac/Developer/Learnings/App/Villa/Villa_VillaAPI/Villa_VillaAPI.csproj"
+        },
+        {
+            "name": "C#: <Villa_VillaWEB>",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "/Users/gopalsmac/Developer/Learnings/App/Villa/Villa_VillaWEB/Villa_VillaWEB.csproj"
+        }
+    ],
+    "compounds": [
+    {
+      "name": "Start ALL",
+      "configurations": [
+        "C#: <Villa_VillaAPI>",
+        "C#: <Villa_VillaWEB>"
+      ],
+      "stopAll": true
+    }
+  ]
+}
