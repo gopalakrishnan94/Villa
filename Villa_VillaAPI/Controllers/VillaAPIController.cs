@@ -73,18 +73,16 @@ public class VillaAPIController : ControllerBase
             //     return BadRequest(ModelState);
             // }
             
-            // Custom Validation Error
-
-            if (await _dbVilla.GetAsync(u => u.Name.ToLower() == createDTO.Name.ToLower()) != null) 
-            {
-                ModelState.AddModelError("CustomError", "Villa Already Exist!");
-                _response.Result = ModelState;
+            if (createDTO == null) {
                 _response.StatusCode = System.Net.HttpStatusCode.BadRequest;
                 _response.IsSuccess = false;
                 return BadRequest(_response);
             }
 
-            if (createDTO == null) {
+            // Custom Validation Error
+            if (await _dbVilla.GetAsync(u => u.Name.ToLower() == createDTO.Name.ToLower()) != null) 
+            {
+                _response.ErrorMessages = new List<string>() { "Villa Already Exist!" };
                 _response.StatusCode = System.Net.HttpStatusCode.BadRequest;
                 _response.IsSuccess = false;
                 return BadRequest(_response);

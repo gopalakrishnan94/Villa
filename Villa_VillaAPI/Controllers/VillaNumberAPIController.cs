@@ -12,11 +12,13 @@ namespace Villa_VillaAPI.Controllers;
 public class VillaNumberAPIController : ControllerBase
 {
     private readonly IVillaNumberRepository _dbVillaNumber;
+    private readonly IVillaRepository _dbVilla;
     private readonly IMapper _mapper;
     protected APIResponse _response;
-    public VillaNumberAPIController(IVillaNumberRepository dbVillaNumber, IMapper mapper)
+    public VillaNumberAPIController(IVillaNumberRepository dbVillaNumber, IVillaRepository dbVilla, IMapper mapper)
     {
         _dbVillaNumber = dbVillaNumber;
+        _dbVilla = dbVilla;
         _mapper = mapper;
         this._response = new();
     }
@@ -70,19 +72,24 @@ public class VillaNumberAPIController : ControllerBase
             // if (!ModelState.IsValid) {
             //     return BadRequest(ModelState);
             // }
+
+            if (createDTO == null) {
+                _response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                _response.IsSuccess = false;
+                return BadRequest(_response);
+            }
             
             // Custom Validation Error
-
             if (await _dbVillaNumber.GetAsync(u => u.VillaNo == createDTO.VillaNo) != null) 
             {
-                ModelState.AddModelError("CustomError", "Villa Number Already Exist!");
-                _response.Result = ModelState;
+                _response.ErrorMessages = new List<string>() { "Villa Number Already Exist!" };
                 _response.StatusCode = System.Net.HttpStatusCode.BadRequest;
                 _response.IsSuccess = false;
                 return BadRequest(_response);
             }
 
-            if (createDTO == null) {
+            if (await _dbVilla.GetAsync(u => u.Id == createDTO.VillaID) == null) {
+                _response.ErrorMessages = new List<string>() { "Villa ID is Invalid!" };
                 _response.StatusCode = System.Net.HttpStatusCode.BadRequest;
                 _response.IsSuccess = false;
                 return BadRequest(_response);
@@ -145,6 +152,13 @@ public class VillaNumberAPIController : ControllerBase
                 _response.StatusCode = System.Net.HttpStatusCode.NotFound;
                 _response.IsSuccess = false;
                 return NotFound(_response);
+            }
+
+            if (await _dbVilla.GetAsync(u => u.Id == updateDTO.VillaID) == null) {
+                _response.ErrorMessages = new List<string>() { "Villa ID is Invalid!" };
+                _response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                _response.IsSuccess = false;
+                return BadRequest(_response);
             }
 
             VillaNumber villaNumberModel = _mapper.Map<VillaNumber>(updateDTO);
