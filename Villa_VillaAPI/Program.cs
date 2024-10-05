@@ -15,6 +15,7 @@ builder.Services.AddDbContext<ApplicationDBContext>(options => {
 
 // Repository
 builder.Services.AddScoped<IVillaRepository, VillaRepository>();
+builder.Services.AddScoped<IVillaNumberRepository, VillaNumberRepository>();
 
 // AutoMapper
 builder.Services.AddAutoMapper(typeof(MappingConfig));
