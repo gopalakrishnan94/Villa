@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Villa_VillaAPI", "Villa_Vil
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Villa_VillaWEB", "Villa_VillaWEB\Villa_VillaWEB.csproj", "{132100CF-D3AA-4FC5-AA59-644450487401}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Villa_Utility", "Villa_Utility\Villa_Utility.csproj", "{C8B04B98-EA6B-4944-8E2C-A8B0E3475D5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{132100CF-D3AA-4FC5-AA59-644450487401}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{132100CF-D3AA-4FC5-AA59-644450487401}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{132100CF-D3AA-4FC5-AA59-644450487401}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8B04B98-EA6B-4944-8E2C-A8B0E3475D5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8B04B98-EA6B-4944-8E2C-A8B0E3475D5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8B04B98-EA6B-4944-8E2C-A8B0E3475D5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8B04B98-EA6B-4944-8E2C-A8B0E3475D5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
